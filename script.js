@@ -7,56 +7,111 @@
 //on click button javascript 
 //attached to on click function to check answers
 //append html
-var quizArray = [
-    {
-        question: "1.What is....",
-        possibleAnswers: ["a", "b", "c", "d"],
-        correctAnswer: "b"
+// var displayQuestion = document.createElementById;
 
-
-    },
-    {
-        question: "2.What is....",
-        possibleAnswers: ["a", "b", "c", "d"],
-        correctAnswer: "b"
-
-
-    },
-    {
-        question: "3.What is....",
-        possibleAnswers: ["a", "b", "c", "d"],
-        correctAnswer: "b"
-
-
-    },
-    {
-        question: "4.What is....",
-        possibleAnswers: ["a", "b", "c", "d"],
-        correctAnswer: "b"
-
-
-    },
-    {
-        question: "6.What is....",
-        possibleAnswers: ["a", "b", "c", "d"],
-        correctAnswer: "b"
-
-
-    },
-]
-var questionNumber = 0;
-//game number
-
-
-var startButton = document.querySelector("#Start");
-
-// Selects element by class
 var timeEl = document.querySelector(".time");
 
 // Selects element by id
 var mainEl = document.getElementById("main");
 var timerInterval;
 var secondsLeft = 10;
+
+
+
+var quizArray = [
+    {
+        question: "1.What is....",
+        possibleAnswers: ["A", "B", "C", "D"],
+        correctAnswer: "A"
+    },
+    {
+        question: "2.What is....",
+        possibleAnswers: ["A", "B", "C", "D"],
+        correctAnswer: "B"
+    },
+    {
+        question: "3.What is....",
+        possibleAnswers: ["A", "B", "C", "D"],
+        correctAnswer: "B"
+    },
+    {
+        question: "4.What is....",
+        possibleAnswers: ["A", "B", "C", "D"],
+        correctAnswer: "B"
+    },
+    {
+        question: "5.What is....",
+        possibleAnswers: ["A", "B", "C", "D"],
+        correctAnswer: "B"
+    },
+]
+var questionNumber = 0;
+// Define variables to keep track of quiz state
+var currentQuestionIndex = 0;
+var score = 0;
+
+// Define a function to display the current question
+function displayCurrentQuestion() {
+    // Get the current question object
+
+
+    // Display the question text
+    document.getElementById("question").textContent = quizArray[currentQuestionIndex].question;
+    // Display the possible answers
+    var answerElements = document.getElementsByClassName("possibleAnswers");
+    for (var i = 0; i < answerElements.length; i++) {
+        answerElements[i].textContent = quizArray[currentQuestionIndex].possibleAnswers[i];
+    }
+}
+
+// Define a function to check the user's answer
+function checkAnswer(event) {
+    // Get the current question object
+    console.log(this);
+    console.log(event.target);
+
+    // Check if the user's answer matches the correct answer
+    if (event.target.textContent === quizArray[currentQuestionIndex].correctAnswer) {
+        // Increment the score and display it
+        score++;
+        document.getElementById("score").textContent = "Score: " + score;
+    }
+    // Increment the current question index
+    currentQuestionIndex++;
+    // If there are more questions, display the next question
+    if (currentQuestionIndex < quizArray.length) {
+        displayCurrentQuestion();
+    } else {
+        // Otherwise, display the final score
+        document.getElementById("quiz").innerHTML = "<h2>Quiz complete!</h2><p>Your score is " + score + " out of " + quizArray.length + ".</p>";
+        endGame();
+    }
+}
+
+function endGame() {
+    document.getElementById("gameArea").style.display = "none";
+    //show imput area
+    clearInterval(timerInterval);
+    document.querySelector(".input").classList.remove("hide");
+};
+//add eventlistener to grab infor from highscore button
+//add console logs to help debug instead of delete or starting over
+var 
+submitButton.addEventListener("click", function (event) {
+    event.preventDefault();
+
+
+
+})
+
+
+var mySelectElement = document.getElementById("#questions");
+
+
+var startButton = document.querySelector("#Start");
+var questionButton = document.querySelector("#question");
+// Selects element by class
+
 //the clock, i can subtract time if needed
 function setTime() {
     // Sets interval in variable
@@ -75,48 +130,84 @@ function setTime() {
     }, 1000);
 }
 var index = 0;
-
+var displayQuestion = document.querySelector("displayQuestion")
 startButton.addEventListener("click", function (event) {
     event.preventDefault();
     setTime();
-    displayQuestion();
+    displayCurrentQuestion();
+    // displayQuestion();
 })
+// // Create a new button element
+// var button = document.createElement('button');
 
-var possibleAnswers = document.querySelector('#possibleAnswers');
+// // Set the button text and attributes
+// button.textContent = '1. A';
+// button.setAttribute('id', 'my-button');
 
-possibleAnswers.addEventListener("click", function (event) {
-    event.preventDefault();
-    displayQuestion();
+// // Add the button to the DOM
+// document.body.appendChild(button);
 
-    var buttonA = document.createElement('button');
-    buttonA.setAttribute('value', 'A');
-    buttonA.textContent = 'A';
-    possibleAnswers.appendChild(buttonA);
 
-    var buttonB = document.createElement('button');
-    buttonB.setAttribute('value', 'B');
-    buttonB.textContent = 'B';
-    possibleAnswers.appendChild(buttonB);
 
-    var buttonC = document.createElement('button');
-    buttonC.setAttribute('value', 'C');
-    buttonC.textContent = 'C';
-    possibleAnswers.appendChild(buttonC);
 
-    var buttonD = document.createElement('button');
-    buttonD.setAttribute('value', 'D');
-    buttonD.textContent = 'D';
-    possibleAnswers.appendChild(buttonD);
-});
 
-function countSelected(selectObject) {
-    var possibleAnswers = document.querySelector("#answers");
-    let numberSelected = 0;
-    for (let i = 0; i < selectObject.options.length; i++) {
-        if (selectObject.options[i].selected) {
-            numberSelected++;
-        }
+
+function navigate(direction) {
+    index = index + direction;
+    if (index < 0) {
+        index = images.length - 1;
+    } else if (index > images.length - 1) {
+        index = 0;
     }
-    return numberSelected;
+    // currentImage = images[index];
+    // carousel.style.backgroundImage = "url('" + currentImage + "')";
 }
+// Clicking on image opens a new window containing the image
+
+//    start.addEventListener("click",function (event) { [
+//         {
+//             question: "1.What is....",
+//             possibleAnswers: ["A", "B", "C", "D"],
+//             correctAnswer: "A"
+//         },
+//         {
+//             question: "2.What is....",
+//             possibleAnswers: ["A", "B", "C", "D"],
+//             correctAnswer: "B"
+//         },
+//         {
+//             question: "3.What is....",
+//             possibleAnswers: ["A", "B", "C", "D"],
+//             correctAnswer: "b"
+//         },
+//         {
+//             question: "4.What is....",
+//             possibleAnswers: ["A", "B", "C", "D"],
+//             correctAnswer: "b"
+//         },
+//         {
+//             question: "5.What is....",
+//             possibleAnswers: ["A", "B", "C", "D"],
+//             correctAnswer: "b"
+//         },
+//     ]
+// });
+
+// // Clicking on next button displays next image in carousel
+// next.addEventListener("click", function (event) {
+//     // Stops event from bubbling up and new window opening
+//     event.stopPropagation();
+//     navigate(1);
+// });
+
+// // Clicking previous displays previous image in carousel
+// prev.addEventListener("click", function (event) {
+//     // Event bubbling would occur and a new window would open if we did not include the following line of code.
+//     event.stopPropagation();
+
+//     navigate(-1);
+// });
+
+// navigate(0);
+
 

@@ -10,15 +10,29 @@
 </head>
 
 <body>
-    <h1>This is a Heading</h1>
-    <p>This is a paragraph.</p>
+
+    <h1>Welcome to our quiz!</h1>
+
     <button id="Start">Start</button>
     <h1 class="time">Timer</h1>
     <h2 id="display"></h2>
-    <h2 selected = "selected"></h2> 
-    <h2 id="possibleAnswers"></h2>
+    <h2 id="selected"></h2>
+    <h2 id="displayQuestion"></h2>
+    <div id="gameArea">
+        <h2 id="question"></h2>
+        <button onclick="checkAnswer(event)" class="possibleAnswers"></button>
+        <button onclick="checkAnswer(event)" class="possibleAnswers"></button>
+        <button onclick="checkAnswer(event)" class="possibleAnswers"></button>
+        <button onclick="checkAnswer(event)" class="possibleAnswers"></button>
+    </div>
 
+    <h2 id="quiz"></h2>
+    <h2 id="score"></h2>
+    <div class="input hide">
+        <input id="initials" type="text">
+        <button id="highscore">Submit</button>
 
+    </div>
     <script src="script.js"></script>
 </body>
 
