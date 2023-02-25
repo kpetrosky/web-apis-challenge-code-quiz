@@ -96,14 +96,20 @@ function endGame() {
 };
 //add eventlistener to grab infor from highscore button
 //add console logs to help debug instead of delete or starting over
-var 
-submitButton.addEventListener("click", function (event) {
-    event.preventDefault();
+function record() {
+    // retrieve current high score from global variable or local storage
 
 
-
-})
-
+    // add event listener to submit button to store high score
+    var submitButton = document.getElementById("submitButton");
+    submitButton.addEventListener("click", function (event) {
+        event.preventDefault();
+        localStorage.setItem('highScore', highScore);
+        console.log('High score saved:', highScore);
+        var highScore = JSON.parse(localStorage.getItem('highScores')) || [];
+        record();
+    });
+}
 
 var mySelectElement = document.getElementById("#questions");
 
@@ -137,19 +143,6 @@ startButton.addEventListener("click", function (event) {
     displayCurrentQuestion();
     // displayQuestion();
 })
-// // Create a new button element
-// var button = document.createElement('button');
-
-// // Set the button text and attributes
-// button.textContent = '1. A';
-// button.setAttribute('id', 'my-button');
-
-// // Add the button to the DOM
-// document.body.appendChild(button);
-
-
-
-
 
 
 function navigate(direction) {
@@ -159,55 +152,4 @@ function navigate(direction) {
     } else if (index > images.length - 1) {
         index = 0;
     }
-    // currentImage = images[index];
-    // carousel.style.backgroundImage = "url('" + currentImage + "')";
-}
-// Clicking on image opens a new window containing the image
-
-//    start.addEventListener("click",function (event) { [
-//         {
-//             question: "1.What is....",
-//             possibleAnswers: ["A", "B", "C", "D"],
-//             correctAnswer: "A"
-//         },
-//         {
-//             question: "2.What is....",
-//             possibleAnswers: ["A", "B", "C", "D"],
-//             correctAnswer: "B"
-//         },
-//         {
-//             question: "3.What is....",
-//             possibleAnswers: ["A", "B", "C", "D"],
-//             correctAnswer: "b"
-//         },
-//         {
-//             question: "4.What is....",
-//             possibleAnswers: ["A", "B", "C", "D"],
-//             correctAnswer: "b"
-//         },
-//         {
-//             question: "5.What is....",
-//             possibleAnswers: ["A", "B", "C", "D"],
-//             correctAnswer: "b"
-//         },
-//     ]
-// });
-
-// // Clicking on next button displays next image in carousel
-// next.addEventListener("click", function (event) {
-//     // Stops event from bubbling up and new window opening
-//     event.stopPropagation();
-//     navigate(1);
-// });
-
-// // Clicking previous displays previous image in carousel
-// prev.addEventListener("click", function (event) {
-//     // Event bubbling would occur and a new window would open if we did not include the following line of code.
-//     event.stopPropagation();
-
-//     navigate(-1);
-// });
-
-// navigate(0);
-
-
+};
