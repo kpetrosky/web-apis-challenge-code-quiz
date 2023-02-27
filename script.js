@@ -93,23 +93,21 @@ function endGame() {
     //show imput area
     clearInterval(timerInterval);
     document.querySelector(".input").classList.remove("hide");
+    var submitButton = document.createElement("button");
+    submitButton.id = "submitButton";
+    submitButton.textContent = "Submit";
+
+    submitButton.addEventListener("click", function (event) {
+        event.preventDefault();
+        storeHighScore(highScore);
+    });
 };
 //add eventlistener to grab infor from highscore button
 //add console logs to help debug instead of delete or starting over
-function record() {
-    // retrieve current high score from global variable or local storage
 
 
-    // add event listener to submit button to store high score
-    var submitButton = document.getElementById("submitButton");
-    submitButton.addEventListener("click", function (event) {
-        event.preventDefault();
-        localStorage.setItem('highScore', highScore);
-        console.log('High score saved:', highScore);
-        var highScore = JSON.parse(localStorage.getItem('highScores')) || [];
-        record();
-    });
-}
+
+
 
 var mySelectElement = document.getElementById("#questions");
 
