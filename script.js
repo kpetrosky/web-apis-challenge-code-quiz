@@ -20,28 +20,28 @@ var secondsLeft = 10;
 
 var quizArray = [
     {
-        question: "1.What is....",
-        possibleAnswers: ["A", "B", "C", "D"],
+        question: "1.What does API stand for?",
+        possibleAnswers: ["A- Application Programming Interfaces", "B- Animal programming interfaces", "C- Analyze programming interfaces", "D- Awesome programming interfaces"],
         correctAnswer: "A"
     },
     {
-        question: "2.What is....",
-        possibleAnswers: ["A", "B", "C", "D"],
+        question: "2.What is one type of browser APIs?",
+        possibleAnswers: ["A- Reddit", "B- DOM (Document Object Model) API", "C- parsing", "D- Chief"],
         correctAnswer: "B"
     },
     {
-        question: "3.What is....",
-        possibleAnswers: ["A", "B", "C", "D"],
-        correctAnswer: "B"
+        question: "3. Name one company that uses a third party API?",
+        possibleAnswers: ["A-Twitter", "B-Ticonderoga ", "C-Chef Boryardee", "D-Minesweeper"],
+        correctAnswer: "A"
     },
     {
-        question: "4.What is....",
-        possibleAnswers: ["A", "B", "C", "D"],
-        correctAnswer: "B"
+        question: "4.What is the program that we code APIs in?",
+        possibleAnswers: ["A-Blizzard", "B- HTML", "C-CSS", "D-Javascript"],
+        correctAnswer: "D"
     },
     {
-        question: "5.What is....",
-        possibleAnswers: ["A", "B", "C", "D"],
+        question: "5.What is the purpose of web APIS?",
+        possibleAnswers: ["A-to make the programmer mad", "B-a set of functions that allows applications to access data and interact ", "C- so the user struggles when using program", "D- we don't use APIS"],
         correctAnswer: "B"
     },
 ]
@@ -151,3 +151,18 @@ function navigate(direction) {
         index = 0;
     }
 };
+
+
+// function storeHighScore() {
+//     var highScore = 100;
+//     localStorage.setItem("highScore", highScore);
+//     console.log("High score stored!");
+// }
+var store = document.querySelector("#highScore");
+// var highScore = $(store).attr('id');
+var userInput = localStorage.getItem(highScore);
+localStorage.setItem(highScore, userInput);
+console.log("High score stored!");
+// $(store).find('textarea').val(userInput);
+
+

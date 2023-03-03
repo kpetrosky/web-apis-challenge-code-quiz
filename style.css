@@ -28,7 +28,11 @@ h2 {
     /* justify-content: center; */
 }
 
-
+array-item {
+    font-size: 15px;
+    border: thick black;
+  }
+  
 
 #highScoreBox {
     width: 200px;
