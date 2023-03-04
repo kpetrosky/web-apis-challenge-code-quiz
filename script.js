@@ -45,7 +45,7 @@ var quizArray = [
         correctAnswer: "B"
     },
 ]
-var questionNumber = 0;
+// var questionNumber = 0;
 // Define variables to keep track of quiz state
 var currentQuestionIndex = 0;
 var score = 0;
@@ -68,10 +68,10 @@ function displayCurrentQuestion() {
 function checkAnswer(event) {
     // Get the current question object
     console.log(this);
-    console.log(event.target);
+    console.log(event.target.getAttribute("data-value"));
 
     // Check if the user's answer matches the correct answer
-    if (event.target.textContent === quizArray[currentQuestionIndex].correctAnswer) {
+    if (event.target.getAttribute("data-value") === quizArray[currentQuestionIndex].correctAnswer) {
         // Increment the score and display it
         score++;
         document.getElementById("score").textContent = "Score: " + score;
@@ -153,15 +153,27 @@ function navigate(direction) {
 };
 
 
-// function storeHighScore() {
-//     var highScore = 100;
-//     localStorage.setItem("highScore", highScore);
-//     console.log("High score stored!");
-// }
-var store = document.querySelector("#highScore");
+function storeHighScore() {
+    var highScore = score+secondsLeft;
+    var userInitials = document.getElementById("initials").value
+    var highScoresList = JSON.parse(localStorage.getItem("highScore")) || [];
+    highScoresList.push({
+        user:userInitials,
+        score:highScore
+    })
+    localStorage.setItem("highScore", JSON.stringify(highScoresList));
+    console.log("High score stored!");
+    document.querySelector(".input").classList.add("hide");
+    var html=""
+    for(let i=0;i<highScoresList.length;i++){
+        html += `<h3>User : ${highScoresList[i].user}        Score:${highScoresList[i].score}</h3>`
+    }
+    document.getElementById("highScoreBox").innerHTML = html
+}
+var store = document.querySelector("#highscore");
+store.addEventListener("click",storeHighScore)
 // var highScore = $(store).attr('id');
-var userInput = localStorage.getItem(highScore);
-localStorage.setItem(highScore, userInput);
+
 console.log("High score stored!");
 // $(store).find('textarea').val(userInput);
 
