@@ -14,7 +14,7 @@ var timeEl = document.querySelector(".time");
 // Selects element by id
 var mainEl = document.getElementById("main");
 var timerInterval;
-var secondsLeft = 10;
+var secondsLeft = 60;
 
 
 
